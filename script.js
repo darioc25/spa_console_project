@@ -4,11 +4,11 @@ const ps5 = {
     status : false,
 
     // Functions
-    start : function() {
+    on : function() {
         this.status = true;
     },
 
-    shutdown : function() {
+    off : function() {
         this.status = false;
     }
 
@@ -29,10 +29,9 @@ let startWrapper = document.querySelector(".startWrapper");
 let menuWrapper = document.querySelector(".menuWrapper");
 let gamesListWrapper = document.querySelector(".gamesListWrapper");
 
-
 // ON/OFF Buttons
 turnOnBtn.addEventListener("click", () => {
-    ps5.start();
+    ps5.on();
     startWrapper.classList.add("d-none");
 
     setTimeout(() => {
@@ -41,7 +40,7 @@ turnOnBtn.addEventListener("click", () => {
 });
 
 turnOffBtn.addEventListener("click", () => {
-    ps5.shutdown();
+    ps5.off();
     menuWrapper.classList.add("d-none");
 
     setTimeout(() => {
@@ -60,34 +59,19 @@ gamesListBackBtn.addEventListener("click", () => {
     menuWrapper.classList.remove("d-none");
 });
 
-
-
-
-
-
-fetch("./json/products_list.json")
+// Games Input From Json File
+fetch("./games.json")
 .then(response => response.json())
 .then(data => {
-    
-    // Populating Wrapper
-    let productsWrapper = document.querySelector(".products-wrapper");
-    data.forEach(product => {
-        let divCard = document.createElement("div");
-        divCard.classList.add("col-12", "col-md-6", "col-lg-4", "my-4");
-        divCard.innerHTML =
+    // Populating Games List
+    data.forEach(game => {
+        let gameObj = document.createElement("div");
+        gameObj.classList.add("col-12", "col-md-6", "col-lg-4", "my-2");
+        gameObj.innerHTML =
         `
-            <div class="product-card">
-                <div class="product-img">
-                    <img class="img-fluid" src="../media/product_placeholder.jpg">
-                    <span><p>${product.type}</p></span>
-                    <button id="favorite-product-btn"><i class="fa-solid fa-thumbs-up"></i></button>
-                </div>
-                <div class="product-info">
-                    <h4>${product.name}</h4>
-                    <p class="d-flex align-items-center mt-2"><i class="fa-solid fa-tag me-1"></i>${product.category}</p>
-                    <p class="text-end product-price">${product.price} $</p>
-                </div>
-            </div>
+            <h1 class="text-white">${game.name}</h1>
+            <h3 class="text-white">${game.space} GB</h3>
         `;
-        productsWrapper.appendChild(divCard);
-    }
+        gamesListWrapper.appendChild(gameObj);
+    })
+})
