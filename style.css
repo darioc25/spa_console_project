@@ -15,11 +15,11 @@ body{
     font-size: 20px;
     font-weight: 800;
     border: none;
+    transition: 0.3s;
 }
 
 #turnOnBtn:hover{
     transform: scale(1.15);
-    transition: 0.3s;
 }
 
 .menuBtn{
@@ -28,11 +28,11 @@ body{
     font-size: 20px;
     font-weight: 800;
     border: none;
+    transition: 0.3s;
 }
 
 .menuBtn:hover{
     transform: scale(1.15);
-    transition: 0.3s;
 }
 
 #gamesListBackBtn{
@@ -41,9 +41,9 @@ body{
     font-size: 20px;
     font-weight: 800;
     border: none;
+    transition: 0.3s;
 }
 
 #gamesListBackBtn:hover{
-    transform: scale(1.15);
-    transition: 0.3s;
+    transform: scale(1.1);
 }

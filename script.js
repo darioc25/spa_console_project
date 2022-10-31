@@ -18,8 +18,6 @@ const ps5 = {
 let turnOnBtn = document.querySelector("#turnOnBtn");
 let turnOffBtn = document.querySelector("#turnOffBtn");
 
-let menu = document.querySelector(".menu");
-
 // Games List Buttons
 let gamesListBtn = document.querySelector("#gamesListBtn");
 let gamesListBackBtn = document.querySelector("#gamesListBackBtn");
