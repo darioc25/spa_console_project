@@ -9,6 +9,7 @@ body{
     color: white;
 }
 
+/* ON-OFF Buttons */
 #turnOnBtn{
     padding: 10px 40px;
     color: black;
@@ -22,6 +23,7 @@ body{
     transform: scale(1.15);
 }
 
+/* Menu Buttons */
 .menuBtn{
     padding: 10px 40px;
     color: black;
@@ -35,7 +37,8 @@ body{
     transform: scale(1.15);
 }
 
-#gamesListBackBtn{
+/* Shop Buttons */
+#shopBackBtn{
     padding: 10px 40px;
     color: black;
     font-size: 20px;
@@ -44,6 +47,25 @@ body{
     transition: 0.3s;
 }
 
-#gamesListBackBtn:hover{
+#shopBackBtn:hover{
     transform: scale(1.1);
+}
+
+/* Shop Card */
+.shopCard{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 2px solid white;
+    border-radius: 10px;
+    transition: 0.3s;
+}
+
+.shopCard:hover{
+    cursor: pointer;
+    background-color: white;
+}
+
+.shopCard:hover h1, .shopCard:hover h3{
+    color: black !important;
 }
