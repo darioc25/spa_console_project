@@ -37,22 +37,18 @@ let shopCardsList = document.querySelector(".shopCardsList");
 turnOnBtn.addEventListener("click", () => {
     ps5.on();
     startWrapper.classList.add("d-none");
-
     setTimeout(() => {
         menuWrapper.classList.remove("d-none");
-    }, 1000);
-
+    }, 1);
     console.log("Success ON");
 });
 
 turnOffBtn.addEventListener("click", () => {
     ps5.off();
     menuWrapper.classList.add("d-none");
-
     setTimeout(() => {
         startWrapper.classList.remove("d-none");
-    }, 1000);
-
+    }, 1);
     console.log("Success OFF");
 });
 
@@ -60,32 +56,58 @@ turnOffBtn.addEventListener("click", () => {
 shopBtn.addEventListener("click", () => {
     menuWrapper.classList.add("d-none");
     shopWrapper.classList.remove("d-none");
-
     console.log("Enter Shop");
 });
 
 shopBackBtn.addEventListener("click", () => {
     shopWrapper.classList.add("d-none");
     menuWrapper.classList.remove("d-none");
-
     console.log("Left Shop");
 });
 
+// Game Shop Details
+let gameShopDetails = document.querySelector(".gameShopDetails");
+let gameShopDetailsBackBtn = document.querySelector("#gameShopDetailsBackBtn");
+
+gameShopDetailsBackBtn.addEventListener("click", () => {
+    gameShopDetails.classList.add("d-none");
+    gameShopDetailsBackBtn.classList.add("d-none");
+    shopCardsList.classList.remove("d-none");
+});
+
 // Shop Games List From Json File
-fetch("./games.json")
+fetch("./shop.json")
 .then(response => response.json())
 .then(data => {
-    // Populating Games List
+    // Populating Shop List
     data.forEach(game => {
         let gameObj = document.createElement("div");
         gameObj.classList.add("col-12", "col-lg-6", "col-xl-4", "mb-4");
         gameObj.innerHTML =
-        `
-            <div class="shopCard">
-                <h1 class="text-white">${game.name}</h1>
-                <h3 class="text-white">${game.space} GB</h3>
-            </div>
-        `;
+            `
+                <div class="shopCard">
+                    <h1 class="text-white">${game.name}</h1>
+                    <h3 class="text-white">${game.space} GB</h3>
+                </div>
+            `;
         shopCardsList.appendChild(gameObj);
     })
-})
+});
+
+// Capturing Shop Game Cards After DOM Loading
+setTimeout(() => {
+        let shopCard = document.querySelectorAll(".shopCard");
+        shopCard.forEach((card) => {
+            card.addEventListener("click", () => {
+                gameShopDetails.innerHTML = 
+                `
+                    ${card.innerHTML}
+                `;
+                shopCardsList.classList.add("d-none");
+                gameShopDetails.classList.remove("d-none");
+                gameShopDetailsBackBtn.classList.remove("d-none");
+                console.dir("Getting Info");
+            });
+        });
+        console.log("### Nodelist Created ###");
+}, 100);
