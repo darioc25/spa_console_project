@@ -14,12 +14,19 @@ const ps5 = {
 
     off : function() {
         this.status = false;
+    },
+
+    installGame : function(game) {
+        this.games.push(game);
     }
 }
 
 // DOM
 let turnOnBtn = document.querySelector("#turnOnBtn");
 let turnOffBtn = document.querySelector("#turnOffBtn");
+
+// Installed Games Button
+let installedGames = document.querySelector("#installedGames");
 
 // Shop Buttons
 let shopBtn = document.querySelector("#shopBtn");
@@ -66,14 +73,62 @@ shopBackBtn.addEventListener("click", () => {
 });
 
 // Game Shop Details
+let gameShopDetailsWrapper = document.querySelector(".gameShopDetailsWrapper");
 let gameShopDetails = document.querySelector(".gameShopDetails");
 let gameShopDetailsBackBtn = document.querySelector("#gameShopDetailsBackBtn");
+let gameInstallerBtn = document.querySelector("#gameInstallerBtn");
 
 gameShopDetailsBackBtn.addEventListener("click", () => {
-    gameShopDetails.classList.add("d-none");
-    gameShopDetailsBackBtn.classList.add("d-none");
+    gameShopDetailsWrapper.classList.add("d-none");
     shopCardsList.classList.remove("d-none");
 });
+
+// Capturing Shop Game Cards After DOM Loading
+setTimeout(() => {
+        let shopCard = document.querySelectorAll(".shopCard");
+        let gameInstallerBtn = [];
+        let installedFlag = [];
+        shopCard.forEach((card, index) => {
+
+            installedFlag[index] = false;
+
+            card.addEventListener("click", () => {
+                gameInstallerBtn[index] = `gameInstallerBtn${index}`;
+                if(installedFlag[index] == false) {
+                    gameShopDetails.innerHTML = 
+                    `
+                        ${card.innerHTML}
+                        <button class="${gameInstallerBtn[index]} menuBtn mb-5">Install Game</button>
+                        <span id="installedTag" class="bg-success text-white p-2 d-none">Installed</span>
+                    `;
+                    installedTag = document.querySelector("#installedTag");
+                    gameInstallerBtn[index] = document.querySelector(`.gameInstallerBtn${index}`);
+                    gameInstallerBtn[index].addEventListener("click", () => {
+                        let game = {
+                            name : card.firstElementChild.innerHTML,
+                            space : parseInt(card.lastElementChild.innerHTML)
+                        };
+                        ps5.installGame(game);
+                        ps5.memory -= game.space;
+                        gameInstallerBtn[index].classList.add("d-none");
+                        installedTag.classList.remove("d-none");
+                        installedFlag[index] = true;
+                    });
+                } else {
+                    gameShopDetails.innerHTML = 
+                    `
+                        ${card.innerHTML}
+                        <span id="installedTag" class="bg-success text-white p-2">Installed</span>
+                    `;
+                }
+
+                shopCardsList.classList.add("d-none");
+                gameShopDetailsWrapper.classList.remove("d-none");
+                console.log("Getting Info");
+            });
+        });
+        console.log("### Nodelist Created ###");
+}, 100);
 
 // Shop Games List From Json File
 fetch("./shop.json")
@@ -94,20 +149,8 @@ fetch("./shop.json")
     })
 });
 
-// Capturing Shop Game Cards After DOM Loading
-setTimeout(() => {
-        let shopCard = document.querySelectorAll(".shopCard");
-        shopCard.forEach((card) => {
-            card.addEventListener("click", () => {
-                gameShopDetails.innerHTML = 
-                `
-                    ${card.innerHTML}
-                `;
-                shopCardsList.classList.add("d-none");
-                gameShopDetails.classList.remove("d-none");
-                gameShopDetailsBackBtn.classList.remove("d-none");
-                console.dir("Getting Info");
-            });
-        });
-        console.log("### Nodelist Created ###");
-}, 100);
+// Installed Games
+installedGames.addEventListener("click", () => {
+    console.table(ps5.games);
+    console.log(`Memory left ${ps5.memory}`);
+});
