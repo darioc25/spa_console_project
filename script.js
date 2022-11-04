@@ -108,18 +108,19 @@
                 card.addEventListener("click", () => {
                     gameInstallerBtn[index] = `gameInstallerBtn${index}`;
                     if(installedFlag[index] == false) {
-                        gameShopDetails.innerHTML = 
+                        gameShopDetails.innerHTML =
                         `
-                            ${card.innerHTML}
-                            <button class="${gameInstallerBtn[index]} menuBtn mb-5">Install Game</button>
-                            <span id="installedTag" class="bg-success text-white p-2 d-none">Installed</span>
+                            <h1 class="text-white">${card.lastElementChild.firstElementChild.innerHTML}<h1/>
+                            <h3 class="text-white">${card.lastElementChild.lastElementChild.innerHTML}<h3/>
+                            <button class="${gameInstallerBtn[index]} menuBtn">Install Game</button>
+                            <span id="installedTag" class="d-none">Installed</span>
                         `;
                         installedTag = document.querySelector("#installedTag");
                         gameInstallerBtn[index] = document.querySelector(`.gameInstallerBtn${index}`);
                         gameInstallerBtn[index].addEventListener("click", () => {
                             let game = {
-                                name : card.firstElementChild.innerHTML,
-                                space : parseInt(card.lastElementChild.innerHTML)
+                                name : card.lastElementChild.firstElementChild.innerHTML,
+                                space : parseInt(card.lastElementChild.lastElementChild.innerHTML)
                             };
                             ps5.installGame(game);
                             ps5.memory -= game.space;
@@ -130,8 +131,8 @@
                     } else {
                         gameShopDetails.innerHTML = 
                         `
-                            ${card.innerHTML}
-                            <span id="installedTag" class="bg-success text-white p-2">Installed</span>
+                            ${card.lastElementChild.innerHTML}
+                            <span id="installedTag">Installed</span>
                         `;
                     }
                     shopCardsList.classList.add("d-none");
@@ -149,12 +150,15 @@
         // Populating Shop List
         data.forEach(game => {
             let gameObj = document.createElement("div");
-            gameObj.classList.add("col-12", "col-lg-6", "col-xl-4", "mb-4");
+            gameObj.classList.add("col-12", "col-lg-6", "col-xl-4", "mb-5", "d-flex", "justify-content-center");
             gameObj.innerHTML =
                 `
                     <div class="shopCard">
-                        <h1 class="text-white">${game.name}</h1>
-                        <h3 class="text-white">${game.space} GB</h3>
+                        <img src="https://picsum.photos/300" class="imgCard w-100">
+                        <div class="my-3 d-flex flex-column align-items-start w-100 ps-1">
+                            <h1>${game.name}</h1>
+                            <h3>${game.space} GB</h3>
+                        </div>
                     </div>
                 `;
             shopCardsList.appendChild(gameObj);
