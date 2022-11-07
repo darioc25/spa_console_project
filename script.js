@@ -100,52 +100,66 @@
 
 // Capturing Shop Game Cards After DOM Loading
     setTimeout(() => {
-            let shopCard = document.querySelectorAll(".shopCard");
-            let gameInstallerBtn = [];
-            let installedFlag = [];
-            shopCard.forEach((card, index) => {
-                installedFlag[index] = false;
-                card.addEventListener("click", () => {
-                    gameInstallerBtn[index] = `gameInstallerBtn${index}`;
-                    if(installedFlag[index] == false) {
-                        gameShopDetails.innerHTML =
-                        `
-                            <h1 class="text-white">${card.lastElementChild.firstElementChild.innerHTML}<h1/>
-                            <h3 class="text-white">${card.lastElementChild.lastElementChild.innerHTML}<h3/>
-                            <button class="${gameInstallerBtn[index]} menuBtn">Install Game</button>
-                            <button id="deleteBtn" class="menuBtn text-white bg-danger d-none">Delete</button>
-                            <span id="installedTag" class="d-none">Installed</span>
-                        `;
-                        deleteBtn = document.querySelector("#deleteBtn");
-                        installedTag = document.querySelector("#installedTag");
-                        gameInstallerBtn[index] = document.querySelector(`.gameInstallerBtn${index}`);
-                        gameInstallerBtn[index].addEventListener("click", () => {
-                            let game = {
-                                name : card.lastElementChild.firstElementChild.innerHTML,
-                                space : parseInt(card.lastElementChild.lastElementChild.innerHTML)
-                            };
-                            ps5.installGame(game);
-                            ps5.memory -= game.space;
-                            gameInstallerBtn[index].classList.add("d-none");
-                            deleteBtn.classList.remove("d-none");
-                            installedTag.classList.remove("d-none");
-                            installedFlag[index] = true;
-                        });
-                    } else {
-                        gameShopDetails.innerHTML = 
-                        `
-                            <h1 class="text-white">${card.lastElementChild.firstElementChild.innerHTML}<h1/>
-                            <h3 class="text-white">${card.lastElementChild.lastElementChild.innerHTML}<h3/>
-                            <button class="menuBtn text-white bg-danger">Delete</button>
-                            <span id="installedTag">Installed</span>
-                        `;
-                    }
-                    shopCardsList.classList.add("d-none");
-                    gameShopDetailsWrapper.classList.remove("d-none");
-                    console.log("Getting Info");
+        let shopCard = document.querySelectorAll(".shopCard");
+        console.log("### Nodelist Created ###");
+        let installedFlag = [];
+        shopCard.forEach((card, index) => {
+            installedFlag[index] = false;
+            card.addEventListener("click", () => {
+                if(installedFlag[index] == false) {
+                    gameShopDetails.innerHTML =
+                    `
+                        <h1 class="text-white">${card.lastElementChild.firstElementChild.innerHTML}<h1/>
+                        <h3 class="text-white">${card.lastElementChild.lastElementChild.innerHTML}<h3/>
+                        <button id="installBtn" class="menuBtn">Install Game</button>
+                        <button id="deleteBtn" class="menuBtn text-white bg-danger d-none">Delete</button>
+                        <span id="installedTag" class="d-none">Installed</span>
+                    `;
+                } else {
+                    gameShopDetails.innerHTML = 
+                    `
+                        <h1 class="text-white">${card.lastElementChild.firstElementChild.innerHTML}<h1/>
+                        <h3 class="text-white">${card.lastElementChild.lastElementChild.innerHTML}<h3/>
+                        <button id="installBtn" class="menuBtn d-none">Install Game</button>
+                        <button id="deleteBtn" class="menuBtn text-white bg-danger">Delete</button>
+                        <span id="installedTag">Installed</span>
+                    `;
+                }
+                // Install Tag
+                installedTag = document.querySelector("#installedTag");
+                // Install Button
+                installBtn = document.querySelector("#installBtn");
+                installBtn.addEventListener("click", () => {
+                    let game = {
+                        name : card.lastElementChild.firstElementChild.innerHTML,
+                        space : parseInt(card.lastElementChild.lastElementChild.innerHTML)
+                    };
+                    ps5.installGame(game);
+                    ps5.memory -= game.space;
+                    installBtn.classList.add("d-none");
+                    deleteBtn.classList.remove("d-none");
+                    installedTag.classList.remove("d-none");
+                    installedFlag[index] = true;
                 });
+                // Delete Button
+                deleteBtn = document.querySelector("#deleteBtn");
+                deleteBtn.addEventListener("click", () => {
+                    ps5.games.forEach(game => {
+                        if(game.name == card.lastElementChild.firstElementChild.innerHTML) {
+                            ps5.games.splice(ps5.games.indexOf(game), 1);
+                            ps5.memory += game.space;
+                        }
+                    });
+                    deleteBtn.classList.add("d-none");
+                    installedTag.classList.add("d-none");
+                    installBtn.classList.remove("d-none");
+                    installedFlag[index] = false;
+                });
+                shopCardsList.classList.add("d-none");
+                gameShopDetailsWrapper.classList.remove("d-none");
+                console.log("Getting Info");
             });
-            console.log("### Nodelist Created ###");
+        });
     }, 100);
 
 // Shop Games List From Json File
