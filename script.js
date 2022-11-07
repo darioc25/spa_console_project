@@ -113,8 +113,10 @@
                             <h1 class="text-white">${card.lastElementChild.firstElementChild.innerHTML}<h1/>
                             <h3 class="text-white">${card.lastElementChild.lastElementChild.innerHTML}<h3/>
                             <button class="${gameInstallerBtn[index]} menuBtn">Install Game</button>
+                            <button id="deleteBtn" class="menuBtn text-white bg-danger d-none">Delete</button>
                             <span id="installedTag" class="d-none">Installed</span>
                         `;
+                        deleteBtn = document.querySelector("#deleteBtn");
                         installedTag = document.querySelector("#installedTag");
                         gameInstallerBtn[index] = document.querySelector(`.gameInstallerBtn${index}`);
                         gameInstallerBtn[index].addEventListener("click", () => {
@@ -125,13 +127,16 @@
                             ps5.installGame(game);
                             ps5.memory -= game.space;
                             gameInstallerBtn[index].classList.add("d-none");
+                            deleteBtn.classList.remove("d-none");
                             installedTag.classList.remove("d-none");
                             installedFlag[index] = true;
                         });
                     } else {
                         gameShopDetails.innerHTML = 
                         `
-                            ${card.lastElementChild.innerHTML}
+                            <h1 class="text-white">${card.lastElementChild.firstElementChild.innerHTML}<h1/>
+                            <h3 class="text-white">${card.lastElementChild.lastElementChild.innerHTML}<h3/>
+                            <button class="menuBtn text-white bg-danger">Delete</button>
                             <span id="installedTag">Installed</span>
                         `;
                     }
@@ -154,7 +159,7 @@
             gameObj.innerHTML =
                 `
                     <div class="shopCard">
-                        <img src="https://picsum.photos/300" class="imgCard w-100">
+                        <img src="https://cdn.dribbble.com/users/4224295/screenshots/14701782/ps5-02.png" class="imgCard w-100">
                         <div class="my-3 d-flex flex-column align-items-start w-100 ps-1">
                             <h1>${game.name}</h1>
                             <h3>${game.space} GB</h3>
