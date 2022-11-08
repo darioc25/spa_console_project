@@ -81,10 +81,6 @@ body{
     transform: scale(1.1);
 }
 
-.imgCard{
-    /* border-radius: 10px; */
-}
-
 .shopTitle{
     color: white;
     font-size: 80px;
@@ -99,4 +95,13 @@ body{
     background-color: green;
     padding: 5px 20px;
     border-radius: 20px;
+}
+
+/* Games Library Card */
+.gamesLibraryCard{
+    background-color: white;
+    border-radius: 15px;
+    margin: 20px 0px;
+    padding: 10px 0px;
+    max-width: 900px;
 }

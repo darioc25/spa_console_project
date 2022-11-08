@@ -27,6 +27,7 @@
 
 // Installed Games Button
     let installedGames = document.querySelector("#installedGames");
+    let gamesLibraryBackBtn = document.querySelector("#gamesLibraryBackBtn");
 
 // Shop Buttons
     let shopBtn = document.querySelector("#shopBtn");
@@ -126,38 +127,38 @@
                     `;
                 }
                 // Install Tag
-                installedTag = document.querySelector("#installedTag");
+                    installedTag = document.querySelector("#installedTag");
                 // Install Button
-                installBtn = document.querySelector("#installBtn");
-                installBtn.addEventListener("click", () => {
-                    let game = {
-                        name : card.lastElementChild.firstElementChild.innerHTML,
-                        space : parseInt(card.lastElementChild.lastElementChild.innerHTML)
-                    };
-                    ps5.installGame(game);
-                    ps5.memory -= game.space;
-                    installBtn.classList.add("d-none");
-                    deleteBtn.classList.remove("d-none");
-                    installedTag.classList.remove("d-none");
-                    installedFlag[index] = true;
-                });
-                // Delete Button
-                deleteBtn = document.querySelector("#deleteBtn");
-                deleteBtn.addEventListener("click", () => {
-                    ps5.games.forEach(game => {
-                        if(game.name == card.lastElementChild.firstElementChild.innerHTML) {
-                            ps5.games.splice(ps5.games.indexOf(game), 1);
-                            ps5.memory += game.space;
-                        }
+                    installBtn = document.querySelector("#installBtn");
+                    installBtn.addEventListener("click", () => {
+                        let game = {
+                            name : card.lastElementChild.firstElementChild.innerHTML,
+                            space : parseInt(card.lastElementChild.lastElementChild.innerHTML)
+                        };
+                        ps5.installGame(game);
+                        ps5.memory -= game.space;
+                        installBtn.classList.add("d-none");
+                        deleteBtn.classList.remove("d-none");
+                        installedTag.classList.remove("d-none");
+                        installedFlag[index] = true;
                     });
-                    deleteBtn.classList.add("d-none");
-                    installedTag.classList.add("d-none");
-                    installBtn.classList.remove("d-none");
-                    installedFlag[index] = false;
-                });
-                shopCardsList.classList.add("d-none");
-                gameShopDetailsWrapper.classList.remove("d-none");
-                console.log("Getting Info");
+                // Delete Button
+                    deleteBtn = document.querySelector("#deleteBtn");
+                    deleteBtn.addEventListener("click", () => {
+                        ps5.games.forEach(game => {
+                            if(game.name == card.lastElementChild.firstElementChild.innerHTML) {
+                                ps5.games.splice(ps5.games.indexOf(game), 1);
+                                ps5.memory += game.space;
+                            }
+                        });
+                        deleteBtn.classList.add("d-none");
+                        installedTag.classList.add("d-none");
+                        installBtn.classList.remove("d-none");
+                        installedFlag[index] = false;
+                    });
+                    shopCardsList.classList.add("d-none");
+                    gameShopDetailsWrapper.classList.remove("d-none");
+                    console.log("Getting Info");
             });
         });
     }, 100);
@@ -171,15 +172,47 @@
             let gameObj = document.createElement("div");
             gameObj.classList.add("col-12", "col-lg-6", "col-xl-4", "mb-5", "d-flex", "justify-content-center");
             gameObj.innerHTML =
-                `
-                    <div class="shopCard">
-                        <img src="https://cdn.dribbble.com/users/4224295/screenshots/14701782/ps5-02.png" class="imgCard w-100">
-                        <div class="my-3 d-flex flex-column align-items-start w-100 ps-1">
-                            <h1>${game.name}</h1>
-                            <h3>${game.space} GB</h3>
-                        </div>
+            `
+                <div class="shopCard">
+                    <img src="https://cdn.dribbble.com/users/4224295/screenshots/14701782/ps5-02.png" class="imgCard w-100">
+                    <div class="my-3 d-flex flex-column align-items-start w-100 ps-1">
+                        <h1>${game.name}</h1>
+                        <h3>${game.space} GB</h3>
                     </div>
-                `;
+                </div>
+            `;
             shopCardsList.appendChild(gameObj);
         })
+    });
+
+// Games Library Section
+    let gamesLibraryWrapper = document.querySelector(".gamesLibraryWrapper");
+    let gamesLibraryList = document.querySelector(".gamesLibraryList");
+
+    installedGames.addEventListener("click", () => {
+        menuWrapper.classList.add("d-none");
+        gamesLibraryWrapper.classList.remove("d-none");
+        if(ps5.games.length == 0) {
+            gamesLibraryList.innerHTML = 
+            `
+                <h1 class="text-white text-center">Empty Library</h1>
+            `;
+        } else {
+            gamesLibraryList.innerHTML = "";
+            ps5.games.forEach(game => {
+                gamesLibraryCard = document.createElement("div");
+                gamesLibraryCard.classList.add("col-12", "gamesLibraryCard");
+                gamesLibraryCard.innerHTML =
+                `
+                    <h1 class="text-center">${game.name}</h1>
+                `;
+                gamesLibraryList.appendChild(gamesLibraryCard);
+            });
+        }
+        console.log("Enter library");
+    });
+
+    gamesLibraryBackBtn.addEventListener("click", () => {
+        menuWrapper.classList.remove("d-none");
+        gamesLibraryWrapper.classList.add("d-none");
     });
