@@ -28,7 +28,7 @@
 
       <div>
         <button id="shopBtn" class="menuBtn">Store <span><i class="bi bi-bag-fill text-warning"></i></span></button>
-        <button class="menuBtn">Friends <span><i class="bi bi-people-fill text-info"></i></span></button>
+        <button id="friendsListBtn" class="menuBtn">Friends <span><i class="bi bi-people-fill text-info"></i></span></button>
         <button id="installedGames" class="menuBtn">Games <i class="bi bi-controller"></i></button>
         <button id="turnOffBtn" class="menuBtn">Shutdown <span><i class="bi bi-escape text-danger"></i></span></button>
       </div>
@@ -56,6 +56,21 @@
         </div>
       </div>
 
+    </section>
+
+    <!-- Friends List Section -->
+    <section class="friendsListWrapper custom-container mt-5 d-none">
+      <div class="row">
+        <div class="col-12 d-flex justify-content-center mb-5">
+          <button id="friendsListBackBtn" class="menuBtn">Home <i class="bi bi-arrow-return-left"></i></button>
+        </div>
+        <div class="col-12 d-flex flex-column align-items-center mb-5">
+          <span class="inputAllert d-none">Empty field!</span>
+          <input type="text" class="inputAddFriend mb-2">
+          <button class="addFriendBtn menuBtn">Add Friend</button>
+        </div>
+        <div class="friendsList col-12 row"></div>
+      </div>
     </section>
 
     <!-- Game Library Section -->

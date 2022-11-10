@@ -5,6 +5,8 @@
 
         memory : 825,
 
+        friends : ["Dario", "Marco", "Carlo", "Giovanni", "Luca", "Saro", "Davide", "Mario", "Veronica", "Elena", "Maria"],
+
         games: [],
 
         // Functions
@@ -32,6 +34,11 @@
 // Shop Buttons
     let shopBtn = document.querySelector("#shopBtn");
     let shopBackBtn = document.querySelector("#shopBackBtn");
+
+// Friends Buttons
+    let friendsListBtn = document.querySelector("#friendsListBtn");
+    let friendsListBackBtn = document.querySelector("#friendsListBackBtn");
+    let addFriendBtn = document.querySelector(".addFriendBtn");
 
 // Main Wrapper Area
     let startWrapper = document.querySelector(".startWrapper");
@@ -195,7 +202,7 @@
         if(ps5.games.length == 0) {
             gamesLibraryList.innerHTML = 
             `
-                <h1 class="text-white text-center">Empty Library</h1>
+                <h1 class="text-white text-center">Empty library</h1>
             `;
         } else {
             gamesLibraryList.innerHTML = "";
@@ -215,4 +222,43 @@
     gamesLibraryBackBtn.addEventListener("click", () => {
         menuWrapper.classList.remove("d-none");
         gamesLibraryWrapper.classList.add("d-none");
+    });
+
+// Friends list
+    let friendsListWrapper = document.querySelector(".friendsListWrapper");
+    let friendsList = document.querySelector(".friendsList");
+    let inputAddFriend = document.querySelector(".inputAddFriend");
+    let inputAllert = document.querySelector(".inputAllert");
+
+    friendsListBtn.addEventListener("click", () => {
+            menuWrapper.classList.add("d-none");
+            friendsListWrapper.classList.remove("d-none");
+        });
+
+    friendsListBackBtn.addEventListener("click", () => {
+        friendsListWrapper.classList.add("d-none");
+        menuWrapper.classList.remove("d-none");
+    });
+
+    addFriendBtn.addEventListener("click", () => {
+        if(inputAddFriend.value != "") {
+            inputAllert.classList.add("d-none");
+            ps5.friends.push(inputAddFriend.value);
+            inputAddFriend.value = "";
+            console.log(ps5.friends);
+            friendsList.innerHTML = "";
+            ps5.friends.forEach(friend => {
+                let newFriend = document.createElement("div");
+                newFriend.classList.add("col-12", "col-md-6", "col-lg-4", "col-xl-3");
+                newFriend.innerHTML =
+                `
+                    <div class="friendCard">
+                        <h2 class="text-white">${friend}</h2>
+                    </div>
+                `;
+                friendsList.appendChild(newFriend);
+            });
+        } else {
+            inputAllert.classList.remove("d-none");
+        }
     });
