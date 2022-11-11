@@ -119,11 +119,28 @@ body{
 }
 
 .friendCard{
-    border: 1px solid white;
-    border-radius: 10px;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
     text-align: center;
-    margin: 10px 0px;
-    min-width: 120px;
+    height: 250px;
+    width: 250px;
+    min-width: 250px;
+    overflow: hidden;
+    transition: 0.3s;
+}
+
+.friendCard:hover{
+    transform: scale(1.1);
+}
+
+.friendCardTitle{
+    color: white;
+    background-color: rgba(0, 0, 0, 0.35);
+    padding: 5px 10px;
+    border-radius: 5px;
 }
 
 .inputAllert{

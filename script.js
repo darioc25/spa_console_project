@@ -5,7 +5,7 @@
 
         memory : 825,
 
-        friends : ["Dario", "Marco", "Carlo", "Giovanni", "Luca", "Saro", "Davide", "Mario", "Veronica", "Elena", "Maria"],
+        friends : [],
 
         games: [],
 
@@ -236,6 +236,7 @@
         });
 
     friendsListBackBtn.addEventListener("click", () => {
+        inputAllert.classList.add("d-none");
         friendsListWrapper.classList.add("d-none");
         menuWrapper.classList.remove("d-none");
     });
@@ -247,13 +248,14 @@
             inputAddFriend.value = "";
             console.log(ps5.friends);
             friendsList.innerHTML = "";
-            ps5.friends.forEach(friend => {
+            ps5.friends.forEach((friend, index) => {
                 let newFriend = document.createElement("div");
-                newFriend.classList.add("col-12", "col-md-6", "col-lg-4", "col-xl-3");
+                newFriend.classList.add("col-12", "col-md-6", "col-lg-4", "col-xxl-3", "py-3", "d-flex", "justify-content-center");
                 newFriend.innerHTML =
                 `
                     <div class="friendCard">
-                        <h2 class="text-white">${friend}</h2>
+                        <img src="https://picsum.photos/30${index}">
+                        <h2 class="position-absolute friendCardTitle">${friend} <span><i class="bi bi-people-fill"></i></span></h2>
                     </div>
                 `;
                 friendsList.appendChild(newFriend);
