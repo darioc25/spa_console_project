@@ -67,22 +67,6 @@
         console.log("Success OFF");
     });
 
-// Installed Games Section
-    installedGames.addEventListener("click", () => {
-        if(ps5.games.length != 0) {
-            console.table(ps5.games);
-            console.log(`${ps5.games.length} games installed`);
-        } else {
-            console.log("Empty Library");
-        }
-        let totalMemory = 0;
-        ps5.games.forEach(game => {
-            totalMemory += game.space;
-        });
-        console.log(`Used memory: ${totalMemory} GB`);
-        console.log(`Memory left: ${ps5.memory} GB`);
-    });
-
 // Shop Area Logic
     shopBtn.addEventListener("click", () => {
         menuWrapper.classList.add("d-none");
@@ -195,10 +179,21 @@
 // Games Library Section
     let gamesLibraryWrapper = document.querySelector(".gamesLibraryWrapper");
     let gamesLibraryList = document.querySelector(".gamesLibraryList");
+    let memoryBar = document.querySelector(".memoryBar");
+    let memoryLeft = document.querySelector(".memoryLeft");
+    let percentageBar = document.querySelector(".percentageBar");
 
     installedGames.addEventListener("click", () => {
         menuWrapper.classList.add("d-none");
         gamesLibraryWrapper.classList.remove("d-none");
+        let totMemory = 0;
+        ps5.games.forEach(game => {
+            totMemory += game.space;
+        });
+        let percentage = ((totMemory * 100) / 825);
+        memoryBar.style.width = percentage + "%";
+        percentageBar.innerHTML = `${percentage.toFixed(1)}%`;
+        memoryLeft.innerHTML = `${totMemory}/825 GB`;
         if(ps5.games.length == 0) {
             gamesLibraryList.innerHTML = 
             `

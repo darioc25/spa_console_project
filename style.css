@@ -106,6 +106,29 @@ body{
     max-width: 900px;
 }
 
+.containerMemoryBar{
+    position: relative;
+    height: 25px;
+    background-color: lightgray;
+    margin-bottom: 5px;
+    max-width: 1000px;
+    padding: 0px;
+    overflow: hidden;
+    border-radius: 20px;
+}
+
+.percentageBar{
+    margin: 0px;
+    position: absolute;
+    left: 94%;
+    top: 2px;
+}
+
+.memoryBar{
+    background-color: rgb(155, 255, 0);
+    height: 100%;
+}
+
 /* Friends List */
 .inputAddFriend{
     border-radius: 25px;
