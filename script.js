@@ -224,10 +224,12 @@
     let friendsList = document.querySelector(".friendsList");
     let inputAddFriend = document.querySelector(".inputAddFriend");
     let inputAllert = document.querySelector(".inputAllert");
+    let friendsCounter = document.querySelector(".friendsCounter");
 
     friendsListBtn.addEventListener("click", () => {
             menuWrapper.classList.add("d-none");
             friendsListWrapper.classList.remove("d-none");
+            friendsCounter.innerHTML = `${ps5.friends.length} friends`;
         });
 
     friendsListBackBtn.addEventListener("click", () => {
@@ -236,26 +238,49 @@
         menuWrapper.classList.remove("d-none");
     });
 
+    let friendCard = [];
+    let deleteFriendBtn = [];
     addFriendBtn.addEventListener("click", () => {
         if(inputAddFriend.value != "") {
             inputAllert.classList.add("d-none");
             ps5.friends.push(inputAddFriend.value);
             inputAddFriend.value = "";
-            console.log(ps5.friends);
-            friendsList.innerHTML = "";
-            ps5.friends.forEach((friend, index) => {
-                let newFriend = document.createElement("div");
-                newFriend.classList.add("col-12", "col-md-6", "col-lg-4", "col-xxl-3", "py-3", "d-flex", "justify-content-center");
-                newFriend.innerHTML =
-                `
-                    <div class="friendCard">
-                        <img src="https://picsum.photos/30${index}">
-                        <h2 class="position-absolute friendCardTitle">${friend} <span><i class="bi bi-people-fill"></i></span></h2>
-                    </div>
-                `;
-                friendsList.appendChild(newFriend);
-            });
+            updateFriendList();
         } else {
             inputAllert.classList.remove("d-none");
         }
+        friendsCounter.innerHTML = `${ps5.friends.length} friends`;
     });
+
+// Functions
+    function updateFriendList() {
+        let friendCard = [];
+        let deleteFriendBtn = [];
+        friendsList.innerHTML = "";
+            ps5.friends.forEach((friend, index) => {
+                let newFriend = document.createElement("div");
+                newFriend.classList.add("col-12", "col-lg-6", "col-xxl-3", "py-4", "px-0", "d-flex", "justify-content-center");
+                newFriend.innerHTML =
+                `
+                    <div class="friendCard${index} friendCardStyle">
+                        <img src="https://picsum.photos/30${index}">
+                        <h2 class="position-absolute friendCardTitle">${friend} <span><i class="bi bi-people-fill"></i></span></h2>
+                        <button class="deleteFriendBtn${index} deleteFriendBtnStyle d-none"><i class="bi bi-trash"></i></button>
+                    </div>
+                `;
+                friendsList.appendChild(newFriend);
+                friendCard[index] = document.querySelector(`.friendCard${index}`);
+                deleteFriendBtn[index] = document.querySelector(`.deleteFriendBtn${index}`);
+                deleteFriendBtn[index].addEventListener("click", () => {
+                    ps5.friends.splice(index, 1);
+                    friendsCounter.innerHTML = `${ps5.friends.length} friends`;
+                    updateFriendList();
+                });
+                friendCard[index].addEventListener("mouseover", () => {
+                    deleteFriendBtn[index].classList.remove("d-none");
+                });
+                friendCard[index].addEventListener("mouseout", () => {
+                    deleteFriendBtn[index].classList.add("d-none");
+                });
+            });
+    }
