@@ -19,18 +19,18 @@ body{
     color: white;
 }
 
-/* ON-OFF Buttons */
-#turnOnBtn{
+.generalBtn{
     padding: 10px 40px;
     color: black;
     font-size: 20px;
     font-weight: 800;
     border: none;
+    min-width: 200px;
     transition: 0.3s;
 }
 
-#turnOnBtn:hover{
-    transform: scale(1.15);
+.generalBtn:hover{
+    transform: scale(1.1);
 }
 
 /* Menu */
@@ -60,10 +60,9 @@ body{
     min-width: 250px;
     height: 100px;
     color: black;
-    font-size: 30px;
-    font-weight: 800;
+    font-size: 25px;
+    font-weight: 700;
     border: none;
-    border-radius: 5px;
     transition: 0.3s;
 }
 
@@ -76,23 +75,9 @@ body{
     padding: 0px 90px;
 }
 
-#shopBackBtn{
-    padding: 10px 40px;
-    color: black;
-    font-size: 20px;
-    font-weight: 800;
-    border: none;
-    transition: 0.3s;
-}
-
-#shopBackBtn:hover{
-    transform: scale(1.1);
-}
-
-/* Shop Card */
 .shopCard{
     overflow: hidden;
-    background-color: rgba(235, 235, 235, 0.90);
+    background-color: rgba(245, 245, 245, 0.9);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -122,6 +107,16 @@ body{
     margin: 0px;
 }
 
+.gameShopDetailsWrapper{
+    margin: 30vh auto 0px auto;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    padding: 30px 0px;
+    max-width: 600px;
+}
+
 #installedTag{
     font-weight: 700;
     font-size: 15px;
@@ -129,9 +124,24 @@ body{
     background-color: green;
     padding: 5px 20px;
     border-radius: 20px;
+    margin: 0px 0px 10px 0px;
 }
 
-/* Games Library Card */
+#deleteBtn{
+    background-color: red;
+    padding: 10px 40px;
+    color: white;
+    font-size: 20px;
+    font-weight: 800;
+    border: none;
+    transition: 0.3s;
+}
+
+#deleteBtn:hover{
+    transform: scale(1.1);
+}
+
+/* Games Library */
 .gamesLibraryCard{
     background-color: white;
     border-radius: 15px;
@@ -165,11 +175,8 @@ body{
 }
 
 /* Friends List */
-.friends-custom-container{
-    padding: 0px 120px;
-}
-
 .inputAddFriend{
+    margin-bottom: 10px;
     border-radius: 25px;
     border: none;
     padding: 5px 10px;
@@ -180,13 +187,23 @@ body{
     outline: none;
 }
 
+.inputAllert{
+    font-weight: bold;
+    font-size: 15px;
+    background-color: rgba(255, 0, 0, 0.60);
+    color: white;
+    padding: 2px 20px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+/* Friend Card */
 .friendCardStyle{
     position: relative;
-    background-color: white;
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 10px solid rgba(255, 255, 255, 0.3);
+    border: 8px solid rgba(255, 255, 255, 0.3);
     border-radius: 50%;
     height: 250px;
     width: 250px;
@@ -218,12 +235,9 @@ body{
     padding: 10px 15px;
 }
 
-.inputAllert{
-    font-weight: bold;
-    font-size: 15px;
-    background-color: rgba(255, 0, 0, 0.60);
-    color: white;
-    padding: 2px 20px;
-    border-radius: 5px;
-    margin-bottom: 10px;
+/* Media Queries */
+@media screen and (max-width: 480px){
+    .custom-container{
+        padding: 0px 20px;
+    }
 }

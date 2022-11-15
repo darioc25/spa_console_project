@@ -120,20 +120,20 @@
                 if(installedFlag[index] == false) {
                     gameShopDetails.innerHTML =
                     `
-                        <h1 class="text-white">${card.lastElementChild.firstElementChild.innerHTML}<h1/>
-                        <h3 class="text-white">${card.lastElementChild.lastElementChild.innerHTML}<h3/>
-                        <button id="installBtn" class="menuBtn">Install Game</button>
-                        <button id="deleteBtn" class="menuBtn text-white bg-danger d-none">Delete</button>
-                        <span id="installedTag" class="d-none">Installed</span>
+                        <h1 class="text-white text-center">${card.lastElementChild.firstElementChild.innerHTML}</h1>
+                        <h3 class="text-white text-center">${card.lastElementChild.lastElementChild.innerHTML}</h3>
+                        <button id="installBtn" class="generalBtn">Install Game</button>
+                        <h6 id="installedTag" class="d-none">Installed</h6>
+                        <button id="deleteBtn" class="d-none">Delete</button>
                     `;
                 } else {
                     gameShopDetails.innerHTML = 
                     `
-                        <h1 class="text-white">${card.lastElementChild.firstElementChild.innerHTML}<h1/>
-                        <h3 class="text-white">${card.lastElementChild.lastElementChild.innerHTML}<h3/>
-                        <button id="installBtn" class="menuBtn d-none">Install Game</button>
-                        <button id="deleteBtn" class="menuBtn text-white bg-danger">Delete</button>
-                        <span id="installedTag">Installed</span>
+                        <h1 class="text-white text-center">${card.lastElementChild.firstElementChild.innerHTML}</h1>
+                        <h3 class="text-white text-center">${card.lastElementChild.lastElementChild.innerHTML}</h3>
+                        <button id="installBtn" class="generalBtn d-none">Install Game</button>
+                        <h6 id="installedTag">Installed</h6>
+                        <button id="deleteBtn">Delete</button>
                     `;
                 }
                 // Install Tag

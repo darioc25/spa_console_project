@@ -19,20 +19,18 @@
 
     <!-- Start Wrapper -->
     <div class="startWrapper d-flex flex-column align-items-center">
-
       <h1 class="startTitle"><i class="bi bi-joystick"></i></h1>
-      <button id="turnOnBtn">Start</button>
-
+      <button id="turnOnBtn" class="generalBtn">Start</button>
     </div>
 
     <!-- Main Menu Wrapper -->
-    <div class="menuWrapper row justify-content-center d-none w-100">
-
+    <div class="menuWrapper row justify-content-center w-100 d-none">
+      <!-- Time and Menu Title -->
       <div class="col-12 d-flex flex-column align-items-center mb-3">
         <h3 class="menuTime text-white"></h3>
         <h1 class="text-white mainMenuTitle">Main Menu</h1>
       </div>
-
+      <!-- Menu Buttons Area -->
       <div class="col-12 row">
         <div class="col-12 col-md-6 col-xl-3 d-flex justify-content-center my-5">
           <button id="shopBtn" class="menuBtn">Store <span><i class="bi bi-bag-fill text-warning"></i></span></button>
@@ -47,42 +45,38 @@
           <button id="turnOffBtn" class="menuBtn">Shutdown <span><i class="bi bi-escape text-danger"></i></span></button>
         </div>
       </div>
-
     </div>
 
     <!-- Shop Wrapper -->
-    <section class="shopWrapper d-none custom-container mt-5">
-
+    <section class="shopWrapper custom-container mt-5 d-none">
       <!-- Shop Games List -->
       <div class="shopCardsList row m-auto">
-        <div class="col-12 row m-auto">
-          <button id="shopBackBtn" class="col-6 mx-auto mb-5">Home <i class="bi bi-arrow-return-left"></i></button>
+        <div class="col-12 d-flex justify-content-center mb-5">
+          <button id="shopBackBtn" class="generalBtn">Home <i class="bi bi-arrow-return-left"></i></button>
         </div>
         <div class="col-12 d-flex justify-content-center mb-5">
           <h1 class="shopTitle">Games Store</h1>
         </div>
       </div>
-
       <!-- Game Details Area -->      
-      <div class="gameShopDetailsWrapper d-none row">
+      <div class="gameShopDetailsWrapper row d-none">
         <div class="gameShopDetails col-12 d-flex flex-column align-items-center mb-5"></div>
         <div class="col-12 d-flex justify-content-center">
-          <button id="gameShopDetailsBackBtn" class="menuBtn">Back to Shop <i class="bi bi-arrow-return-left"></i></button>
+          <button id="gameShopDetailsBackBtn" class="generalBtn">Back to Shop <i class="bi bi-arrow-return-left"></i></button>
         </div>
       </div>
-
     </section>
 
     <!-- Friends List Section -->
-    <section class="friendsListWrapper friends-custom-container mt-5 d-none">
+    <section class="friendsListWrapper mt-5 custom-container d-none">
       <div class="row flex-column align-items-center">
         <div class="col-12 d-flex justify-content-center mb-5">
-          <button id="friendsListBackBtn" class="menuBtn">Home <i class="bi bi-arrow-return-left"></i></button>
+          <button id="friendsListBackBtn" class="generalBtn">Home <i class="bi bi-arrow-return-left"></i></button>
         </div>
         <div class="col-12 d-flex flex-column align-items-center mb-3">
           <span class="inputAllert d-none">Empty field!</span>
-          <input type="text" class="inputAddFriend mb-2">
-          <button class="addFriendBtn menuBtn">Add Friend</button>
+          <input type="text" class="inputAddFriend">
+          <button class="addFriendBtn generalBtn">Add Friend</button>
         </div>
         <div class="col-12 mb-5">
           <h3 class="text-white text-center friendsCounter"></h3>
@@ -95,7 +89,7 @@
     <section class="gamesLibraryWrapper custom-container mt-5 d-none">
       <div class="row justify-content-center">
         <div class="col-12 d-flex justify-content-center mb-5">
-          <button id="gamesLibraryBackBtn" class="menuBtn">Home <i class="bi bi-arrow-return-left"></i></button>
+          <button id="gamesLibraryBackBtn" class="generalBtn">Home <i class="bi bi-arrow-return-left"></i></button>
         </div>
         <div class="col-12 containerMemoryBar">
           <h6 class="percentageBar"></h6>
