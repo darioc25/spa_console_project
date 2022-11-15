@@ -3,7 +3,11 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>PS5</title>
+    <title>Game Console</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <!-- Bootstrap Icon -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
     <!-- CSS Area -->
@@ -16,21 +20,32 @@
     <!-- Start Wrapper -->
     <div class="startWrapper d-flex flex-column align-items-center">
 
-      <h1 class="title"><i class="bi bi-playstation"></i></i></h1>
+      <h1 class="startTitle"><i class="bi bi-joystick"></i></h1>
       <button id="turnOnBtn">Start</button>
 
     </div>
 
     <!-- Main Menu Wrapper -->
-    <div class="menuWrapper d-flex flex-column align-items-center mx-5 mt-5 d-none">
+    <div class="menuWrapper row justify-content-center d-none w-100">
 
-      <h1 class="mb-5 text-white">Home Menu</h1>
+      <div class="col-12 d-flex flex-column align-items-center mb-3">
+        <h3 class="menuTime text-white"></h3>
+        <h1 class="text-white mainMenuTitle">Main Menu</h1>
+      </div>
 
-      <div>
-        <button id="shopBtn" class="menuBtn">Store <span><i class="bi bi-bag-fill text-warning"></i></span></button>
-        <button id="friendsListBtn" class="menuBtn">Friends <span><i class="bi bi-people-fill text-info"></i></span></button>
-        <button id="installedGames" class="menuBtn">Games <i class="bi bi-controller"></i></button>
-        <button id="turnOffBtn" class="menuBtn">Shutdown <span><i class="bi bi-escape text-danger"></i></span></button>
+      <div class="col-12 row">
+        <div class="col-12 col-md-6 col-xl-3 d-flex justify-content-center my-5">
+          <button id="shopBtn" class="menuBtn">Store <span><i class="bi bi-bag-fill text-warning"></i></span></button>
+        </div>
+        <div class="col-12 col-md-6 col-xl-3 d-flex justify-content-center my-5">
+          <button id="friendsListBtn" class="menuBtn">Friends <span><i class="bi bi-people-fill text-info"></i></span></button>
+        </div>
+        <div class="col-12 col-md-6 col-xl-3 d-flex justify-content-center my-5">
+          <button id="installedGames" class="menuBtn">Games <i class="bi bi-controller"></i></button>
+        </div>
+        <div class="col-12 col-md-6 col-xl-3 d-flex justify-content-center my-5">
+          <button id="turnOffBtn" class="menuBtn">Shutdown <span><i class="bi bi-escape text-danger"></i></span></button>
+        </div>
       </div>
 
     </div>
@@ -43,7 +58,7 @@
         <div class="col-12 row m-auto">
           <button id="shopBackBtn" class="col-6 mx-auto mb-5">Home <i class="bi bi-arrow-return-left"></i></button>
         </div>
-        <div class="col-12 mb-5">
+        <div class="col-12 d-flex justify-content-center mb-5">
           <h1 class="shopTitle">Games Store</h1>
         </div>
       </div>

@@ -1,15 +1,21 @@
+*{
+    font-family: 'Jost', sans-serif;
+    margin: 0px;
+    padding: 0px;
+}
+
 body{
-    background-image: url("./media/main-background.svg");
+    background-image: url("./media/animated-bg.svg");
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
 }
 
-.title{
+.startTitle{
     margin-top: 35vh;
     text-align: center;
-    font-size: 100px;
+    font-size: 120px;
     color: white;
 }
 
@@ -27,13 +33,37 @@ body{
     transform: scale(1.15);
 }
 
-/* Menu Buttons */
+/* Menu */
+.menuWrapper{
+    margin: 0px;
+}
+
+.menuTime{
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    padding: 5px 10px;
+    margin: 20px 0px 120px 0px;
+    text-align: end;
+}
+
+.mainMenuTitle{
+    font-size: 80px;
+    margin: 0px;
+    text-align: center;
+}
+
 .menuBtn{
-    padding: 10px 40px;
+    background-color: white;
+    width: 250px;
+    min-width: 250px;
+    height: 100px;
     color: black;
-    font-size: 20px;
+    font-size: 30px;
     font-weight: 800;
     border: none;
+    border-radius: 5px;
     transition: 0.3s;
 }
 
@@ -62,18 +92,14 @@ body{
 /* Shop Card */
 .shopCard{
     overflow: hidden;
-    background-color: white;
-    border: 2px solid white;
+    background-color: rgba(235, 235, 235, 0.90);
     display: flex;
     flex-direction: column;
     align-items: center;
-    border-radius: 5px;
-    max-width: 300px;
+    border-radius: 8px;
+    width: 250px;
+    min-width: 250px;
     transition: 0.3s;
-}
-
-.shopCard h1, .shopCard h3{
-    color: black;
 }
 
 .shopCard:hover{
@@ -83,9 +109,17 @@ body{
 
 .shopTitle{
     color: white;
-    font-size: 80px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 5px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(8px);
+    padding: 15px 0px;
+    font-size: 75px;
     text-align: center;
     font-weight: bolder;
+    width: 900px;
+    min-width: 300px;
+    margin: 0px;
 }
 
 #installedTag{
@@ -152,9 +186,8 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 5px solid white;
+    border: 10px solid rgba(255, 255, 255, 0.3);
     border-radius: 50%;
-    /* text-align: center; */
     height: 250px;
     width: 250px;
     min-width: 250px;

@@ -1,9 +1,9 @@
-// PS5 Object Model
-    const ps5 = {
+// Console Object Model
+    const gameConsole = {
         // Properties
         status : false,
 
-        memory : 825,
+        memory : 900,
 
         friends : [],
 
@@ -50,7 +50,7 @@
 
 // ON/OFF Logic
     turnOnBtn.addEventListener("click", () => {
-        ps5.on();
+        gameConsole.on();
         startWrapper.classList.add("d-none");
         setTimeout(() => {
             menuWrapper.classList.remove("d-none");
@@ -59,13 +59,32 @@
     });
 
     turnOffBtn.addEventListener("click", () => {
-        ps5.off();
+        gameConsole.off();
         menuWrapper.classList.add("d-none");
         setTimeout(() => {
             startWrapper.classList.remove("d-none");
         }, 1);
         console.log("Success OFF");
     });
+
+// Clock
+    let menuTime = document.querySelector(".menuTime");
+    setInterval(() => {
+        let time = new Date();
+        let seconds = time.getSeconds().toString();
+        if(seconds.length == 1) {
+            seconds = "0" + seconds;
+        }
+        let minutes = time.getMinutes().toString();
+        if(minutes.length == 1) {
+            minutes = "0" + minutes;
+        }
+        let hours = time.getHours().toString();
+        if(hours.length == 1) {
+            hours = "0" + hours;
+        }
+        menuTime.innerHTML = `${hours}:${minutes}:${seconds}`;
+    }, 1000);
 
 // Shop Area Logic
     shopBtn.addEventListener("click", () => {
@@ -126,8 +145,8 @@
                             name : card.lastElementChild.firstElementChild.innerHTML,
                             space : parseInt(card.lastElementChild.lastElementChild.innerHTML)
                         };
-                        ps5.installGame(game);
-                        ps5.memory -= game.space;
+                        gameConsole.installGame(game);
+                        gameConsole.memory -= game.space;
                         installBtn.classList.add("d-none");
                         deleteBtn.classList.remove("d-none");
                         installedTag.classList.remove("d-none");
@@ -136,10 +155,10 @@
                 // Delete Button
                     deleteBtn = document.querySelector("#deleteBtn");
                     deleteBtn.addEventListener("click", () => {
-                        ps5.games.forEach(game => {
+                        gameConsole.games.forEach(game => {
                             if(game.name == card.lastElementChild.firstElementChild.innerHTML) {
-                                ps5.games.splice(ps5.games.indexOf(game), 1);
-                                ps5.memory += game.space;
+                                gameConsole.games.splice(gameConsole.games.indexOf(game), 1);
+                                gameConsole.memory += game.space;
                             }
                         });
                         deleteBtn.classList.add("d-none");
@@ -161,14 +180,14 @@
         // Populating Shop List
         data.forEach(game => {
             let gameObj = document.createElement("div");
-            gameObj.classList.add("col-12", "col-lg-6", "col-xl-4", "mb-5", "d-flex", "justify-content-center");
+            gameObj.classList.add("col-12", "col-md-6", "col-xl-4", "col-xxl-3", "mb-5", "d-flex", "justify-content-center");
             gameObj.innerHTML =
             `
                 <div class="shopCard">
-                    <img src="https://cdn.dribbble.com/users/4224295/screenshots/14701782/ps5-02.png" class="imgCard w-100">
-                    <div class="my-3 d-flex flex-column align-items-start w-100 ps-1">
-                        <h1>${game.name}</h1>
-                        <h3>${game.space} GB</h3>
+                    <img src="https://cdn.pixabay.com/photo/2016/12/23/07/01/game-1926907_960_720.png" class="imgCard w-100">
+                    <div class="my-3 d-flex flex-column align-items-start w-100 ps-2">
+                        <h3 class="m-0">${game.name}</h3>
+                        <h5 class="m-0">${game.space} GB</h5>
                     </div>
                 </div>
             `;
@@ -187,21 +206,21 @@
         menuWrapper.classList.add("d-none");
         gamesLibraryWrapper.classList.remove("d-none");
         let totMemory = 0;
-        ps5.games.forEach(game => {
+        gameConsole.games.forEach(game => {
             totMemory += game.space;
         });
-        let percentage = ((totMemory * 100) / 825);
+        let percentage = ((totMemory * 100) / 900);
         memoryBar.style.width = percentage + "%";
         percentageBar.innerHTML = `${percentage.toFixed(1)}%`;
-        memoryLeft.innerHTML = `${totMemory}/825 GB`;
-        if(ps5.games.length == 0) {
+        memoryLeft.innerHTML = `${totMemory}/900 GB`;
+        if(gameConsole.games.length == 0) {
             gamesLibraryList.innerHTML = 
             `
                 <h1 class="text-white text-center">Empty library</h1>
             `;
         } else {
             gamesLibraryList.innerHTML = "";
-            ps5.games.forEach(game => {
+            gameConsole.games.forEach(game => {
                 gamesLibraryCard = document.createElement("div");
                 gamesLibraryCard.classList.add("col-12", "gamesLibraryCard");
                 gamesLibraryCard.innerHTML =
@@ -229,7 +248,7 @@
     friendsListBtn.addEventListener("click", () => {
             menuWrapper.classList.add("d-none");
             friendsListWrapper.classList.remove("d-none");
-            friendsCounter.innerHTML = `${ps5.friends.length} friends`;
+            friendsCounter.innerHTML = `${gameConsole.friends.length} friends`;
         });
 
     friendsListBackBtn.addEventListener("click", () => {
@@ -243,13 +262,13 @@
     addFriendBtn.addEventListener("click", () => {
         if(inputAddFriend.value != "") {
             inputAllert.classList.add("d-none");
-            ps5.friends.push(inputAddFriend.value);
+            gameConsole.friends.push(inputAddFriend.value);
             inputAddFriend.value = "";
             updateFriendList();
         } else {
             inputAllert.classList.remove("d-none");
         }
-        friendsCounter.innerHTML = `${ps5.friends.length} friends`;
+        friendsCounter.innerHTML = `${gameConsole.friends.length} friends`;
     });
 
 // Functions
@@ -257,30 +276,30 @@
         let friendCard = [];
         let deleteFriendBtn = [];
         friendsList.innerHTML = "";
-            ps5.friends.forEach((friend, index) => {
-                let newFriend = document.createElement("div");
-                newFriend.classList.add("col-12", "col-lg-6", "col-xxl-3", "py-4", "px-0", "d-flex", "justify-content-center");
-                newFriend.innerHTML =
-                `
-                    <div class="friendCard${index} friendCardStyle">
-                        <img src="https://picsum.photos/30${index}">
-                        <h2 class="position-absolute friendCardTitle">${friend} <span><i class="bi bi-people-fill"></i></span></h2>
-                        <button class="deleteFriendBtn${index} deleteFriendBtnStyle d-none"><i class="bi bi-trash"></i></button>
-                    </div>
-                `;
-                friendsList.appendChild(newFriend);
-                friendCard[index] = document.querySelector(`.friendCard${index}`);
-                deleteFriendBtn[index] = document.querySelector(`.deleteFriendBtn${index}`);
-                deleteFriendBtn[index].addEventListener("click", () => {
-                    ps5.friends.splice(index, 1);
-                    friendsCounter.innerHTML = `${ps5.friends.length} friends`;
-                    updateFriendList();
-                });
-                friendCard[index].addEventListener("mouseover", () => {
-                    deleteFriendBtn[index].classList.remove("d-none");
-                });
-                friendCard[index].addEventListener("mouseout", () => {
-                    deleteFriendBtn[index].classList.add("d-none");
-                });
+        gameConsole.friends.forEach((friend, index) => {
+            let newFriend = document.createElement("div");
+            newFriend.classList.add("col-12", "col-lg-6", "col-xxl-3", "py-4", "px-0", "d-flex", "justify-content-center");
+            newFriend.innerHTML =
+            `
+                <div class="friendCard${index} friendCardStyle">
+                    <img src="https://picsum.photos/30${index}">
+                    <h2 class="position-absolute friendCardTitle">${friend} <span><i class="bi bi-people-fill"></i></span></h2>
+                    <button class="deleteFriendBtn${index} deleteFriendBtnStyle d-none"><i class="bi bi-trash"></i></button>
+                </div>
+            `;
+            friendsList.appendChild(newFriend);
+            friendCard[index] = document.querySelector(`.friendCard${index}`);
+            deleteFriendBtn[index] = document.querySelector(`.deleteFriendBtn${index}`);
+            deleteFriendBtn[index].addEventListener("click", () => {
+                gameConsole.friends.splice(index, 1);
+                friendsCounter.innerHTML = `${gameConsole.friends.length} friends`;
+                updateFriendList();
             });
+            friendCard[index].addEventListener("mouseover", () => {
+                deleteFriendBtn[index].classList.remove("d-none");
+            });
+            friendCard[index].addEventListener("mouseout", () => {
+                deleteFriendBtn[index].classList.add("d-none");
+            });
+        });
     }

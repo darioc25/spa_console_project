@@ -2,42 +2,54 @@
     {
         "id": 0,
         "name": "Dark Souls III",
-        "space": 48
+        "space": 17
     },
 
     {
         "id": 1,
         "name": "Elden Ring",
-        "space": 90
+        "space": 60
     },
 
     {
         "id": 2,
         "name": "GTA V",
-        "space": 120
+        "space": 86
     },
 
     {
         "id": 3,
-        "name": "Subnautica",
-        "space": 15
+        "name": "Minecraft",
+        "space": 2
     },
 
     {
         "id": 4,
         "name": "The Last Of Us",
-        "space": 26
+        "space": 68
     },
 
     {
         "id": 5,
         "name": "God Of War",
-        "space": 39
+        "space": 45
     },
 
     {
         "id": 6,
         "name": "Modern Warfare II",
-        "space": 213
+        "space": 71
+    },
+
+    {
+        "id": 7,
+        "name": "Far Cry 6",
+        "space": 40
+    },
+
+    {
+        "id": 8,
+        "name": "Cyberpunk 2077",
+        "space": 87
     }
 ]
