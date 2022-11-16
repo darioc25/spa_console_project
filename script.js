@@ -54,8 +54,7 @@
         startWrapper.classList.add("d-none");
         setTimeout(() => {
             menuWrapper.classList.remove("d-none");
-        }, 1);
-        console.log("Success ON");
+        }, 1000);
     });
 
     turnOffBtn.addEventListener("click", () => {
@@ -63,8 +62,7 @@
         menuWrapper.classList.add("d-none");
         setTimeout(() => {
             startWrapper.classList.remove("d-none");
-        }, 1);
-        console.log("Success OFF");
+        }, 1000);
     });
 
 // Clock
@@ -90,13 +88,11 @@
     shopBtn.addEventListener("click", () => {
         menuWrapper.classList.add("d-none");
         shopWrapper.classList.remove("d-none");
-        console.log("Enter Shop");
     });
 
     shopBackBtn.addEventListener("click", () => {
         shopWrapper.classList.add("d-none");
         menuWrapper.classList.remove("d-none");
-        console.log("Left Shop");
     });
 
 // Game Details Section
@@ -112,7 +108,6 @@
 // Capturing Shop Game Cards After DOM Loading
     setTimeout(() => {
         let shopCard = document.querySelectorAll(".shopCard");
-        console.log("### Nodelist Created ###");
         let installedFlag = [];
         shopCard.forEach((card, index) => {
             installedFlag[index] = false;
@@ -168,10 +163,9 @@
                     });
                     shopCardsList.classList.add("d-none");
                     gameShopDetailsWrapper.classList.remove("d-none");
-                    console.log("Getting Info");
             });
         });
-    }, 100);
+    }, 200);
 
 // Shop Games List From Json File
     fetch("./shop.json")
@@ -230,7 +224,6 @@
                 gamesLibraryList.appendChild(gamesLibraryCard);
             });
         }
-        console.log("Enter library");
     });
 
     gamesLibraryBackBtn.addEventListener("click", () => {
