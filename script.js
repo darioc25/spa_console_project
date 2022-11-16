@@ -225,7 +225,7 @@
                 gamesLibraryCard.classList.add("col-12", "gamesLibraryCard");
                 gamesLibraryCard.innerHTML =
                 `
-                    <h1 class="text-center">${game.name}</h1>
+                    <h1 class="text-center m-0">${game.name}</h1>
                 `;
                 gamesLibraryList.appendChild(gamesLibraryCard);
             });

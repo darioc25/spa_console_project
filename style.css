@@ -148,6 +148,12 @@ body{
     margin: 20px 0px;
     padding: 10px 0px;
     max-width: 900px;
+    transition: 0.3s;
+}
+
+.gamesLibraryCard:hover{
+    transform: scale(0.95);
+    cursor: pointer;
 }
 
 .containerMemoryBar{
@@ -162,11 +168,11 @@ body{
 }
 
 .percentageBar{
+    position: absolute;
     color: black;
     margin: 0px;
-    position: absolute;
-    left: 94%;
-    top: 2px;
+    right: 15px;
+    top: 3px;
 }
 
 .memoryBar{
